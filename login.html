@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login</title>
+  <!-- bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+  <!-- js -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+    crossorigin="anonymous"></script>
+  <!-- style sheet -->
+  <link rel="stylesheet" href="./reg.css">
+</head>
+<body>
+  <div class="row">
+    <div class="col-4"></div>
+    <div class="col-3">
+      <div class="reg text-center  p-4">
+
+        <img src="https://bank-app-new-lc.netlify.app/images/bank.png" alt="">
+
+        <h3>My Bank</h3>
+        <p>Acces your account securely</p>
+        <input id="acnum" type="text" placeholder="Account Number"><br><br><br>
+        <input id="password" type="text" placeholder="Password"><br><br><br>
+        <button onclick="login()" class="bg-primary p-1 text-light" style="border-radius: 10px;">login</button>
+        <br><br>
+         if you don't have any account please <a href="./registration.html">Register</a>
+      </div>
+      </div>
+    <div class="col-4"></div>
+  </div>
+
+
+</body>
+
+<script>
+    function login() {
+  let acnum = document.getElementById('acnum').value.trim();
+  let password = document.getElementById('password').value.trim();
+
+  let logininfo = JSON.parse(localStorage.getItem(acnum));
+
+  if (logininfo == null) {
+    alert("Invalid account");
+  } else if (logininfo.password !== password) {
+    alert("Invalid password");
+  } else {
+    alert("Login success");
+    sessionStorage.setItem("currentac", acnum);
+    sessionStorage.setItem("currentuser", logininfo.username);
+      window.location.href='./bank1.html'
+    
+    }
+}
+</script>
+<style>
+   body{
+    background-color: blue;
+   }
+    img {
+  border-radius: 50%;
+  height: 100px;
+  width: 100px;
+  background-color: #ffffff;
+  border: 2px solid #888888;
+}
+.row{
+    margin-top: 130px;
+}
+.col-3{
+    border: 2px solid black;
+    margin-left: 80px;
+    background-color: white;
+    box-shadow: 2px 2px 4px white;
+}
+button{
+    width: 100px;
+}
+a{
+    color: blue;
+}
+input{
+    width: 300px;
+}
+</style>
+
+</html>
